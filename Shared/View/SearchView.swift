@@ -50,6 +50,7 @@ struct SearchView: View {
                         .focused($startTF)
                         .textCase(.lowercase)
                         .disableAutocorrection(true)
+                        .foregroundColor(.black)
                 }
                 .padding(.vertical,12)
                 .padding(.horizontal)
@@ -81,6 +82,7 @@ struct SearchView: View {
                         
                         Text("Item Not Found")
                             .font(.custom(customFont,size: 22).bold())
+                            .foregroundColor(.black)
                         
                         Text("Try a more generic search term or try looking for alternative products.")
                             .font(.custom(customFont,size: 16))
@@ -100,6 +102,7 @@ struct SearchView: View {
                             Text("Found \(products.count) results")
                                 .font(.custom(customFont, size: 24).bold())
                                 .padding(.vertical)
+                                .foregroundColor(.black)
                             
                             // Staggered Grid...
                             // See my Staggered Video..
@@ -145,12 +148,14 @@ struct SearchView: View {
                     Image(product.productImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .cornerRadius(25)
                         .opacity(0)
                 }
                 else{
                     Image(product.productImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .cornerRadius(25)
                         .matchedGeometryEffect(id: "\(product.id)SEARCH", in: animation)
                 }
             }
@@ -162,6 +167,7 @@ struct SearchView: View {
                 .font(.custom(customFont, size: 18))
                 .fontWeight(.semibold)
                 .padding(.top)
+                .foregroundColor(.black)
             
             Text(product.subtitle)
                 .font(.custom(customFont, size: 14))

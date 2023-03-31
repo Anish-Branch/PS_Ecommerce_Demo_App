@@ -23,9 +23,28 @@ struct Product: Identifiable,Hashable {
 
 // Product Types...
 enum ProductType: String,CaseIterable{
-    case Wearable = "Wearable"
-    case Laptops = "Laptops"
-    case Phones = "Phones"
-    case Tablets = "Tablets"
+    //case Wearable = "Wearable"
+    //case Laptops = "Laptops"
+    //case Phones = "Phones"
+    //case Tablets = "Tablets"
+    case Astronaut = "Astronaut"
+    case Baby = "Baby"
+    case Bear = "Bear"
+    case Bird = "Bird"
+    case Blue = "Blue"
+    case Cute = "Cute"
+    case Fluff = "Fluff"
+    case Gears = "Gears"
+    case Gold = "Gold"
+    case Green = "Green"
+    case Pink = "Pink"
+    case Purple = "Purple"
+    case Rainbow = "Rainbow"
+    case Red = "Red"
+    case Royal = "Royal"
+    case Scales = "Scales"
+    case Teal = "Teal"
+    case Tiger = "Tiger"
+    case Yellow = "Yellow"
 }
 

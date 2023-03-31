@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import BranchSDK
 
 struct MainPage: View {
+    
     // Current Tab...
     @State var currentTab: Tab = .Home
     
@@ -84,7 +86,6 @@ struct MainPage: View {
             ZStack{
                 // Detail Page...
                 if let product = sharedData.detailProduct,sharedData.showDetailProduct{
-                    
                     ProductDetailView(product: product, animation: animation)
                         .environmentObject(sharedData)
                     // adding transitions...
@@ -97,7 +98,7 @@ struct MainPage: View {
                 guard let userInfo = notification.userInfo as? Dictionary<String, Any> else {return}
                
                 if let productIDURL = userInfo["product_id"] as? String {
-                    let productID = productIDURL.replacingOccurrences(of: "https://www.apple.com/", with: "")
+                    let productID = productIDURL.replacingOccurrences(of: "https://www.branch.io/", with: "")
                     print("UserID = \(productID)")
                     let homeViewModel = HomeViewModel()
                    let filteredProducts =  homeViewModel.products.filter {$0.productId == productID}
@@ -111,6 +112,7 @@ struct MainPage: View {
         }
     }
 }
+
 
 struct MainPage_Previews: PreviewProvider {
     static var previews: some View {

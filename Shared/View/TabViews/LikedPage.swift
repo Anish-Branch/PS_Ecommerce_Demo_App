@@ -25,6 +25,7 @@ struct LikedPage: View {
                         
                         Text("Favourites")
                             .font(.custom(customFont, size: 28).bold())
+                            .foregroundColor(.black)
                         
                         Spacer()
                         
@@ -55,6 +56,7 @@ struct LikedPage: View {
                             Text("No favorites yet")
                                 .font(.custom(customFont, size: 25))
                                 .fontWeight(.semibold)
+                                .foregroundColor(.black)
                             
                             Text("Hit the like button on each product page to save favorite ones.")
                                 .font(.custom(customFont, size: 18))
@@ -115,6 +117,7 @@ struct LikedPage: View {
             Image(product.productImage)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .cornerRadius(25)
                 .frame(width: 100, height: 100)
             
             VStack(alignment: .leading, spacing: 8) {
@@ -122,6 +125,7 @@ struct LikedPage: View {
                 Text(product.title)
                     .font(.custom(customFont, size: 18).bold())
                     .lineLimit(1)
+                    .foregroundColor(.black)
                 
                 Text(product.subtitle)
                     .font(.custom(customFont, size: 17))

@@ -2,8 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>Your data will be used to provide with personalised content and notifications</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.anishsomani.psecommerce.demoapp</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>psecommercedemo</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.182282817042-1ifkibadsp8oe5q542166etrk0al1v63</string>
+			</array>
+		</dict>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Raleway-SemiBold.ttf</string>
+		<string>Raleway-Regular.ttf</string>
+		<string>Raleway-Bold.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>branch_key</key>
 	<dict>
 		<key>live</key>
@@ -17,27 +47,6 @@
 		<string>ecommerce-demo-alternate.app.link</string>
 		<string>ecommerce-demo.test-app.link</string>
 		<string>ecommerce-demo-alternate.test-app.link</string>
-	</array>
-	<key>ATSApplicationFontsPath</key>
-	<string></string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>com.anishsomani.psecommerce.demoapp</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>psecommercedemo</string>
-			</array>
-		</dict>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Raleway-SemiBold.ttf</string>
-		<string>Raleway-Regular.ttf</string>
-		<string>Raleway-Bold.ttf</string>
 	</array>
 </dict>
 </plist>

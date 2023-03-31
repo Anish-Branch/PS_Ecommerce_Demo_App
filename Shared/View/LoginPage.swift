@@ -6,14 +6,18 @@
 //
 
 import SwiftUI
+import BranchSDK
 
 struct LoginPage: View {
     @StateObject var loginData: LoginPageModel = LoginPageModel()
+    
+    let uuid = UUID().uuidString
+    
     var body: some View {
         
         VStack{
             
-            // WElcome Back text for 3 half of the screen...
+            // Welcome Back text for 3 half of the screen...
             Text("Welcome\nback")
                 .font(.custom(customFont, size: 55).bold())
                 .foregroundColor(.white)
@@ -63,18 +67,21 @@ struct LoginPage: View {
                     Text(loginData.registerUser ? "Register" : "Login")
                         .font(.custom(customFont, size: 22).bold())
                         .frame(maxWidth: .infinity,alignment: .leading)
+                        .foregroundColor(.black)
                     
                     // Custom Text Field...
                     
-                    CustomTextField(icon: "envelope", title: "Email", hint: "justine@gmail.com", value: $loginData.email, showPassword: .constant(false))
+                    CustomTextField(icon: "envelope", title: "Email", hint: "monster@branch.io", value: $loginData.email, showPassword: .constant(false))
                         .padding(.top,30)
+                        .foregroundColor(.black)
                     
-                    CustomTextField(icon: "lock", title: "Password", hint: "123456", value: $loginData.password, showPassword: $loginData.showPassword)
+                    CustomTextField(icon: "lock", title: "Password", hint: "abc123", value: $loginData.password, showPassword: $loginData.showPassword)
                         .padding(.top,10)
+                        .foregroundColor(.black)
                     
                     // Regsiter Reenter Password
                     if loginData.registerUser{
-                        CustomTextField(icon: "envelope", title: "Re-Enter Password", hint: "123456", value: $loginData.re_Enter_Password, showPassword: $loginData.showReEnterPassword)
+                        CustomTextField(icon: "envelope", title: "Re-Enter Password", hint: "abc123", value: $loginData.re_Enter_Password, showPassword: $loginData.showReEnterPassword)
                             .padding(.top,10)
                     }
                     
@@ -98,6 +105,9 @@ struct LoginPage: View {
                         }
                         else{
                             loginData.Login()
+                            branchEventLogin()
+                            Branch.getInstance().setIdentity(uuid)
+                            print("The Branch user setIdentity is \(uuid)")
                         }
                     } label: {
                         
@@ -114,7 +124,7 @@ struct LoginPage: View {
                     .padding(.horizontal)
                     
                     // Register User Button...
-                    
+                    /*
                     Button {
                         withAnimation{
                             loginData.registerUser.toggle()
@@ -125,7 +135,7 @@ struct LoginPage: View {
                             .font(.custom(customFont, size: 14))
                             .fontWeight(.semibold)
                             .foregroundColor(Color("Purple"))
-                    }
+                    }*/
                     .padding(.top,8)
                 }
                 .padding(30)
@@ -198,6 +208,23 @@ struct LoginPage: View {
             ,alignment: .trailing
         )
     }
+}
+
+// Branch.io - Track Event - User Login
+func branchEventLogin(){
+    // Create a BranchUniversalObject with your content data:
+    let branchUniversalObject = BranchUniversalObject.init()
+
+    // Create a BranchEvent:
+    let event = BranchEvent.standardEvent(.login)
+
+    // Add the BranchUniversalObject with the content (do not add an empty branchUniversalObject):
+    event.contentItems     = [ branchUniversalObject ]
+
+    // Add relevant event data:
+    event.alias            = "User Login"
+    event.eventDescription = "User has logged in"
+    event.logEvent() // Log the event.
 }
 
 struct LoginPage_Previews: PreviewProvider {

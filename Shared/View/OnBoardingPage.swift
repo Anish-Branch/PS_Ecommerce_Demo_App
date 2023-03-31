@@ -17,16 +17,18 @@ struct OnBoardingPage: View {
         
         VStack(alignment: .leading){
             
-            Text("Find your\nGadget")
-                .font(.custom(customFont, size: 55))
-            // Since we added all three fonts in Info.plist
-            // We can call all of those fonts with any names...
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-            
-            Image("OnBoard")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            GeometryReader { geometry in
+                VStack {
+                    Image("monster-store-logo-light-bkg")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: min(geometry.size.width, geometry.size.height) * 0.8)
+                    
+                    
+                }
+                
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
             
             Button {
                 withAnimation{
@@ -40,13 +42,13 @@ struct OnBoardingPage: View {
                     .padding(.vertical,18)
                     .frame(maxWidth: .infinity)
                     .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.5), radius: 5, x: 5, y: 5)
                     .foregroundColor(Color("Purple"))
             }
             .padding(.horizontal,30)
             // Adding Some Adjustments only for larger displays...
-            .offset(y: getRect().height < 750 ? 20 : 40)
+            .offset(y: getRect().height < 750 ? 20 : 0)
             
             Spacer()
         }
@@ -55,7 +57,7 @@ struct OnBoardingPage: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
         
-            Color("Purple")
+            Color.white
         )
         .overlay(
         

@@ -41,12 +41,13 @@ struct Home: View {
                     }
                 }
                 
-                Text("Order online\ncollect in store")
+                Text("Branch Monster Store\nSelect your monster")
                     .font(.custom(customFont, size: 28).bold())
                     .frame(maxWidth: .infinity,alignment: .leading)
                     .padding(.top)
                     .padding(.horizontal,25)
-                
+                    .foregroundColor(.black)
+
                 // Products Tab....
                 
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -84,7 +85,7 @@ struct Home: View {
                 // This button will show all products on the current product type..
                 // since here were showing only 4...
                 
-                Button {
+                /*Button {
                     homeData.showMoreProductsOnType.toggle()
                 } label: {
                     
@@ -96,7 +97,7 @@ struct Home: View {
                     }
                     .font(.custom(customFont, size: 15).bold())
                     .foregroundColor(Color("Purple"))
-                }
+                }*/
                 .frame(maxWidth: .infinity,alignment: .trailing)
                 .padding(.trailing)
                 .padding(.top,10)
@@ -164,12 +165,14 @@ struct Home: View {
                     Image(product.productImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .cornerRadius(25)
                         .opacity(0)
                 }
                 else{
                     Image(product.productImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .cornerRadius(25)
                         .matchedGeometryEffect(id: "\(product.id)IMAGE", in: animation)
                 }
             }
@@ -182,6 +185,7 @@ struct Home: View {
                 .font(.custom(customFont, size: 18))
                 .fontWeight(.semibold)
                 .padding(.top)
+                .foregroundColor(.black)
             
             Text(product.subtitle)
                 .font(.custom(customFont, size: 14))

@@ -66,6 +66,7 @@ struct ProductDetailView: View {
                 Image(product.productImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .cornerRadius(25)
                     .matchedGeometryEffect(id: "\(product.id)\(sharedData.fromSearchPage ? "SEARCH" : "IMAGE")", in: animation)
                     .padding(.horizontal)
                     .offset(y: -12)
@@ -82,16 +83,18 @@ struct ProductDetailView: View {
                     
                     Text(product.title)
                         .font(.custom(customFont, size: 20).bold())
+                        .foregroundColor(.black)
                     
                     Text(product.subtitle)
                         .font(.custom(customFont, size: 18))
                         .foregroundColor(.gray)
                     
-                    Text("Get Apple TV+ free for a year")
+                    Text("Monster Art by Gareth Evans")
                         .font(.custom(customFont, size: 16).bold())
                         .padding(.top)
+                        .foregroundColor(.black)
                     
-                    Text("Available when you purchase any new iPhone, iPad, iPod Touch, Mac or Apple TV, £4.99/month after free trial.")
+                    Text("Branch provides the industry’s leading mobile linking and measurement platforms, unifying user experience and attribution across devices, platforms, and channels.")
                         .font(.custom(customFont, size: 15))
                         .foregroundColor(.gray)
                     
@@ -103,7 +106,7 @@ struct ProductDetailView: View {
                         Label {
                             Image(systemName: "arrow.right")
                         } icon: {
-                            Text("Full description")
+                            Text("Share Monster")
                         }
                         .font(.custom(customFont, size: 15).bold())
                         .foregroundColor(Color("Purple"))
@@ -220,9 +223,9 @@ struct ProductDetailView: View {
         event.contentItems     = [ branchUniversalObject ]
 
         // Add relevant event data:
-        event.alias            = "my custom alias anish"
+        event.alias            = "Add To Cart"
         event.currency         = .USD
-        event.eventDescription = "Event_description anish"
+        event.eventDescription = "Monster Added to Cart"
         event.logEvent() // Log the event.
     }
 
@@ -234,7 +237,7 @@ struct ProductDetailView: View {
         buo.imageUrl = "https://branch.io/img/logo-dark.svg"
         buo.publiclyIndex = true
         buo.locallyIndex = true
-        buo.canonicalUrl = "https://www.apple.com/imacpurple"
+        buo.canonicalUrl = "https://www.branch.io/\(product.productId)"
         
         // Branch.io - Set Deep Link Properties
 
@@ -244,12 +247,14 @@ struct ProductDetailView: View {
         lp.addControlParam("$desktop_url", withValue: "https://help.branch.io/")
         lp.addControlParam("$ios_url", withValue: "https://help.branch.io/developers-hub/docs/ios-sdk-overview")
         lp.addControlParam("$android_url", withValue: "https://help.branch.io/developers-hub/docs/android-sdk-overview")
-        lp.addControlParam("$canonical_url", withValue: "https://www.apple.com/imacpurple")
+        lp.addControlParam("$canonical_url", withValue: "https://www.branch.io/\(product.productId)")
         
-        
+        buo.getShortUrl(with: lp) { url, error in
+                print(url ?? "")
+            }
         
         // Branch.io - Call Share Sheet
-        buo.showShareSheet(with: lp, andShareText: "Check out this Product", from: UIApplication.shared.windows.first?.rootViewController) { (string, bool, error) in
+        buo.showShareSheet(with: lp, andShareText: "Check out this Branch Monster", from: UIApplication.shared.windows.first?.rootViewController) { (string, bool, error) in
             guard error == nil else { return }
             // String = Sharing Method (Messages || CopyToPasteboard || Mail || etc)
             // Bool = Share Completed/Not Completed
